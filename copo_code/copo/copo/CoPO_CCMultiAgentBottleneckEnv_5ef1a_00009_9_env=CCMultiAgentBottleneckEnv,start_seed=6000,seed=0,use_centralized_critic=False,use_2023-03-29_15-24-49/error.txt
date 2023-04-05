@@ -1,0 +1,71 @@
+Failure # 1 (occurred at 2023-03-29_15-25-19)
+Traceback (most recent call last):
+  File "C:\Users\singa\anaconda3\envs\copo\lib\site-packages\ray\tune\trial_runner.py", line 586, in _process_trial
+    results = self.trial_executor.fetch_result(trial)
+  File "C:\Users\singa\anaconda3\envs\copo\lib\site-packages\ray\tune\ray_trial_executor.py", line 609, in fetch_result
+    result = ray.get(trial_future[0], timeout=DEFAULT_GET_TIMEOUT)
+  File "C:\Users\singa\anaconda3\envs\copo\lib\site-packages\ray\_private\client_mode_hook.py", line 47, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\singa\anaconda3\envs\copo\lib\site-packages\ray\worker.py", line 1456, in get
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(AccessDenied): [36mray::CoPO.train_buffered()[39m (pid=39236, ip=10.194.12.155)
+  File "python\ray\_raylet.pyx", line 439, in ray._raylet.execute_task
+  File "C:\Users\singa\anaconda3\envs\copo\lib\site-packages\ray\worker.py", line 176, in reraise_actor_init_error
+    raise self.actor_init_error
+  File "python\ray\_raylet.pyx", line 473, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 476, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 480, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 432, in ray._raylet.execute_task.function_executor
+  File "C:\Users\singa\anaconda3\envs\copo\lib\site-packages\ray\function_manager.py", line 556, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "C:\Users\singa\anaconda3\envs\copo\lib\site-packages\ray\rllib\agents\trainer_template.py", line 107, in __init__
+    Trainer.__init__(self, config, env, logger_creator)
+  File "C:\Users\singa\anaconda3\envs\copo\lib\site-packages\ray\rllib\agents\trainer.py", line 486, in __init__
+    super().__init__(config, logger_creator)
+  File "C:\Users\singa\anaconda3\envs\copo\lib\site-packages\ray\tune\trainable.py", line 97, in __init__
+    self.setup(copy.deepcopy(self.config))
+  File "C:\Users\singa\anaconda3\envs\copo\lib\site-packages\ray\rllib\agents\trainer.py", line 654, in setup
+    self._init(self.config, self.env_creator)
+  File "C:\Users\singa\anaconda3\envs\copo\lib\site-packages\ray\rllib\agents\trainer_template.py", line 139, in _init
+    num_workers=self.config["num_workers"])
+  File "C:\Users\singa\anaconda3\envs\copo\lib\site-packages\ray\rllib\agents\trainer.py", line 731, in _make_workers
+    logdir=self.logdir)
+  File "C:\Users\singa\anaconda3\envs\copo\lib\site-packages\ray\rllib\evaluation\worker_set.py", line 81, in __init__
+    lambda p, pid: (pid, p.observation_space, p.action_space)))
+  File "C:\Users\singa\anaconda3\envs\copo\lib\site-packages\ray\_private\client_mode_hook.py", line 47, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\singa\anaconda3\envs\copo\lib\site-packages\ray\worker.py", line 1456, in get
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(AccessDenied): [36mray::RolloutWorker.foreach_policy()[39m (pid=27956, ip=10.194.12.155)
+  File "C:\Users\singa\anaconda3\envs\copo\lib\site-packages\ray\thirdparty_files\psutil\_pswindows.py", line 780, in cmdline
+    ret = cext.proc_cmdline(self.pid, use_peb=True)
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+[36mray::RolloutWorker.foreach_policy()[39m (pid=27956, ip=10.194.12.155)
+  File "C:\Users\singa\anaconda3\envs\copo\lib\site-packages\ray\thirdparty_files\psutil\_pswindows.py", line 679, in wrapper
+    return fun(self, *args, **kwargs)
+  File "C:\Users\singa\anaconda3\envs\copo\lib\site-packages\ray\thirdparty_files\psutil\_pswindows.py", line 695, in wrapper
+    return fun(self, *args, **kwargs)
+  File "C:\Users\singa\anaconda3\envs\copo\lib\site-packages\ray\thirdparty_files\psutil\_pswindows.py", line 783, in cmdline
+    ret = cext.proc_cmdline(self.pid, use_peb=False)
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+[36mray::RolloutWorker.foreach_policy()[39m (pid=27956, ip=10.194.12.155)
+  File "python\ray\_raylet.pyx", line 439, in ray._raylet.execute_task
+  File "C:\Users\singa\anaconda3\envs\copo\lib\site-packages\ray\worker.py", line 176, in reraise_actor_init_error
+    raise self.actor_init_error
+  File "python\ray\_raylet.pyx", line 440, in ray._raylet.execute_task
+  File "C:\Users\singa\anaconda3\envs\copo\lib\site-packages\ray\memory_monitor.py", line 132, in raise_if_low_memory
+    self.error_threshold))
+  File "C:\Users\singa\anaconda3\envs\copo\lib\site-packages\ray\memory_monitor.py", line 43, in get_message
+    proc.cmdline()))
+  File "C:\Users\singa\anaconda3\envs\copo\lib\site-packages\ray\thirdparty_files\psutil\__init__.py", line 677, in cmdline
+    return self._proc.cmdline()
+  File "C:\Users\singa\anaconda3\envs\copo\lib\site-packages\ray\thirdparty_files\psutil\_pswindows.py", line 681, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name)
+psutil.AccessDenied: psutil.AccessDenied (pid=172)
+
